@@ -1,2 +1,4 @@
 spider/data/*
 html/*
+*.pyc
+.DS_Store

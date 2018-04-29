@@ -113,11 +113,11 @@ class Area(SpiderBase):
                 if not os.path.exists(path):
                     os.makedirs(path)
                 for area_name, url in district['areas'].items():
-                	print district_name, area_name
-                	if area_name == u'全部':
-                		continue
-                  filepath = "%s/%s.json" % (path,area_name)
-                	self.search_area(url, filepath)
+                    print district_name, area_name
+                    if area_name == u'全部':
+                        continue
+                    filepath = "%s/%s.json" % (path,area_name)
+                    self.search_area(url, filepath)
 
 
 
