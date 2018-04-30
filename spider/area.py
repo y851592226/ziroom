@@ -100,6 +100,7 @@ class Area(SpiderBase):
                         except:
                         	print format_exc()
             with open(filepath, 'w')as f:
+                  house_list = sorted(house_list, key=lambda item : item['url'])
                   txt = json.dumps(house_list, ensure_ascii=False, indent=4)
                   f.write(txt.encode('utf8'))
 
