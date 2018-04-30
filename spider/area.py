@@ -85,9 +85,13 @@ class Area(SpiderBase):
                             house['position'] = house_name[1]
                             house['orientation'] = house_name[1].split('-')[-1]
                             house['area'] = house_area
-                            house['acreage'] = float(house_acreage.strip(u' ㎡约'))
-                            house['house_floor'] = int(house_floor[0])
-                            house['sum_floor'] = int(house_floor[1])
+                            house['acreage'] = float(house_acreage.strip(u' ㎡约'))                          
+                            try:
+                                house['house_floor'] = int(house_floor[0])
+                                house['sum_floor'] = int(house_floor[1])
+                            except:
+                                house['house_floor'] = house_floor[0]
+                                house['sum_floor'] = house_floor[1]
                             house['bedrooms'] = int(house_type.split(u'室')[0])
                             house['type'] = house_type
                             house['other'] = house_other
@@ -100,7 +104,7 @@ class Area(SpiderBase):
                         except:
                         	print format_exc()
             with open(filepath, 'w')as f:
-                  house_list = sorted(house_list, key=lambda item : item['url'])
+                  house_list = sorted(house_list, key=lambda item : (item['brand'], item['type'], item['price'], item['url']))
                   txt = json.dumps(house_list, ensure_ascii=False, indent=4)
                   f.write(txt.encode('utf8'))
 
@@ -115,6 +119,7 @@ class Area(SpiderBase):
                     os.makedirs(path)
                 for area_name, url in district['areas'].items():
                     print district_name, area_name
+                    # if area_name != u'清河':
                     if area_name == u'全部':
                         continue
                     filepath = "%s/%s.json" % (path,area_name)
