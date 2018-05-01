@@ -109,7 +109,7 @@ class Area(SpiderBase):
                   f.write(txt.encode('utf8'))
 
       def search_all(self):
-            now = datetime.datetime.now().strftime("%Y%m%d:%H")
+            now = datetime.datetime.now().strftime("%Y%m%d-%H")
 
             with open(CUR_PATH + '/areas.txt', 'r')as f:
                   data = json.loads(f.read())
