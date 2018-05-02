@@ -1,8 +1,10 @@
 # coding: utf8
 
+import sys
+reload(sys)
+sys.setdefaultencoding( "utf-8" )
 import json
 import os
-import sys
 import datetime
 from SpiderBase import SpiderBase
 from traceback import format_exc
@@ -78,8 +80,8 @@ class Area(SpiderBase):
                             house_price = price.contents[0].strip('\n')
                             house_pay_type = price.span.string
                             house = {}
-                            house['peizhizhong'] = 1 if 'misu-loading' in house_img else 0
-                            house['keyuding'] = 1 if 'misu-loading' not in house_img else 0
+                            house['peizhizhong'] = 1 if 'defaultPZZ' in house_img else 0
+                            house['keyuding'] = 1 if 'defaultPZZ' not in house_img else 0
                             house['url'] = house_url
                             house['brand'] = house_name[0]
                             house['position'] = house_name[1]
